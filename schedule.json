@@ -1,0 +1,296 @@
+{
+    "tasks": [
+        {
+            "parent_block_id": "2154314",
+            "procedure_icd": null
+        },
+        {
+            "parent_block_id": "2154314",
+            "procedure_icd": null
+        },
+        {
+            "parent_block_id": "2197640",
+            "procedure_icd": "605,1742"
+        },
+        {
+            "parent_block_id": "2197640",
+            "procedure_icd": "605,1742"
+        },
+        {
+            "parent_block_id": "2197640",
+            "procedure_icd": "57.49"
+        },
+        {
+            "parent_block_id": "2183468",
+            "procedure_icd": "81.51"
+        },
+        {
+            "parent_block_id": "2183468",
+            "procedure_icd": "81.54"
+        },
+        {
+            "parent_block_id": "2183468",
+            "procedure_icd": "81.54"
+        },
+        {
+            "parent_block_id": "2269006",
+            "procedure_icd": "Z8108"
+        },
+        {
+            "parent_block_id": "2183519",
+            "procedure_icd": "81.54"
+        },
+        {
+            "parent_block_id": "2183519",
+            "procedure_icd": "81.54"
+        },
+        {
+            "parent_block_id": "2183519",
+            "procedure_icd": "81.54"
+        },
+        {
+            "parent_block_id": "2252980",
+            "procedure_icd": "81.51"
+        },
+        {
+            "parent_block_id": "2252980",
+            "procedure_icd": "81.54"
+        },
+        {
+            "parent_block_id": "2252980",
+            "procedure_icd": "81.54"
+        },
+        {
+            "parent_block_id": "2186586",
+            "procedure_icd": "Z286 0"
+        },
+        {
+            "parent_block_id": "2186586",
+            "procedure_icd": "Z283"
+        },
+        {
+            "parent_block_id": "2186586",
+            "procedure_icd": "Z283"
+        },
+        {
+            "parent_block_id": "2186586",
+            "procedure_icd": "Z286 0"
+        },
+        {
+            "parent_block_id": "2186586",
+            "procedure_icd": null
+        },
+        {
+            "parent_block_id": "2186586",
+            "procedure_icd": "Z286 0"
+        },
+        {
+            "parent_block_id": "2254663",
+            "procedure_icd": "44.38"
+        },
+        {
+            "parent_block_id": "2254663",
+            "procedure_icd": "44.97"
+        },
+        {
+            "parent_block_id": "2232438",
+            "procedure_icd": "57.49"
+        },
+        {
+            "parent_block_id": "2232438",
+            "procedure_icd": "Z5631"
+        },
+        {
+            "parent_block_id": "2232438",
+            "procedure_icd": "Z5631"
+        },
+        {
+            "parent_block_id": "2153529",
+            "procedure_icd": null
+        },
+        {
+            "parent_block_id": "2267432",
+            "procedure_icd": "62.19"
+        },
+        {
+            "parent_block_id": "2268968",
+            "procedure_icd": "28.6"
+        },
+        {
+            "parent_block_id": "2261197",
+            "procedure_icd": "21.69"
+        },
+        {
+            "parent_block_id": "2261197",
+            "procedure_icd": "Z2769"
+        },
+        {
+            "parent_block_id": "2190481",
+            "procedure_icd": "82.21"
+        },
+        {
+            "parent_block_id": "2190481",
+            "procedure_icd": "7286"
+        },
+        {
+            "parent_block_id": "2190481",
+            "procedure_icd": "82.01"
+        },
+        {
+            "parent_block_id": "2190481",
+            "procedure_icd": "3540"
+        },
+        {
+            "parent_block_id": "2190481",
+            "procedure_icd": "82.01"
+        },
+        {
+            "parent_block_id": "2190481",
+            "procedure_icd": "3540"
+        },
+        {
+            "parent_block_id": "2190481",
+            "procedure_icd": "3540"
+        },
+        {
+            "parent_block_id": "2190481",
+            "procedure_icd": "82.01"
+        },
+        {
+            "parent_block_id": "2270024",
+            "procedure_icd": "81.65"
+        },
+        {
+            "parent_block_id": "2270024",
+            "procedure_icd": "81.65"
+        },
+        {
+            "parent_block_id": "2161628",
+            "procedure_icd": "78.60"
+        },
+        {
+            "parent_block_id": "2161628",
+            "procedure_icd": "78.60"
+        },
+        {
+            "parent_block_id": "2161628",
+            "procedure_icd": "78.60"
+        },
+        {
+            "parent_block_id": "2161628",
+            "procedure_icd": "78.60"
+        }
+    ],
+    "blocks": [
+        {
+            "id": "2153529",
+            "start": "14:00:00",
+            "end": "20:00:00"
+        },
+        {
+            "id": "2154314",
+            "start": "07:00:00",
+            "end": "13:00:00"
+        },
+        {
+            "id": "2156716",
+            "start": "07:00:00",
+            "end": "15:00:00"
+        },
+        {
+            "id": "2161628",
+            "start": "14:50:00",
+            "end": "22:50:00"
+        },
+        {
+            "id": "2183468",
+            "start": "07:00:00",
+            "end": "15:00:00"
+        },
+        {
+            "id": "2183519",
+            "start": "07:00:00",
+            "end": "15:00:00"
+        },
+        {
+            "id": "2186586",
+            "start": "07:00:00",
+            "end": "13:00:00"
+        },
+        {
+            "id": "2188136",
+            "start": "15:00:00",
+            "end": "22:00:00"
+        },
+        {
+            "id": "2190481",
+            "start": "16:00:00",
+            "end": "23:00:00"
+        },
+        {
+            "id": "2197640",
+            "start": "15:00:00",
+            "end": "22:00:00"
+        },
+        {
+            "id": "2220216",
+            "start": "16:30:00",
+            "end": "22:00:00"
+        },
+        {
+            "id": "2232438",
+            "start": "07:00:00",
+            "end": "14:00:00"
+        },
+        {
+            "id": "2252980",
+            "start": "15:00:00",
+            "end": "22:20:00"
+        },
+        {
+            "id": "2254663",
+            "start": "16:00:00",
+            "end": "23:00:00"
+        },
+        {
+            "id": "2258150",
+            "start": "20:00:00",
+            "end": "00:00:00"
+        },
+        {
+            "id": "2261093",
+            "start": "14:00:00",
+            "end": "16:00:00"
+        },
+        {
+            "id": "2261197",
+            "start": "12:00:00",
+            "end": "16:00:00"
+        },
+        {
+            "id": "2267432",
+            "start": "07:00:00",
+            "end": "10:00:00"
+        },
+        {
+            "id": "2268968",
+            "start": "10:00:00",
+            "end": "12:00:00"
+        },
+        {
+            "id": "2269006",
+            "start": "15:00:00",
+            "end": "22:00:00"
+        },
+        {
+            "id": "2270024",
+            "start": "07:00:00",
+            "end": "16:10:00"
+        },
+        {
+            "id": "2270930",
+            "start": "13:00:00",
+            "end": "15:00:00"
+        }
+    ]
+}

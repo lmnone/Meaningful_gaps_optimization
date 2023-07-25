@@ -39,3 +39,14 @@ print("Tasks Dictionary:")
 print(tasks_dict)
 print("\nBlocks Dictionary:")
 print(blocks_dict)
+
+icd_set = set()
+
+# Loop through the tasks dictionary and add ICD codes to the set
+for icd_list in tasks_dict.values():
+    if icd_list:
+        icd_set.update(icd_list)
+
+# Print the set of unique ICD codes
+print("Set of unique ICD codes:[%d]" % len(icd_set))
+print(icd_set)
