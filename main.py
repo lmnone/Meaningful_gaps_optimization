@@ -56,44 +56,67 @@ for block in data_dict['blocks']:
     }
 
 # Print the resulting dictionaries
-print("Tasks task_list:")
-print(task_list)
+# print("Tasks task_list:")
+# print(task_list)
 print("\nBlocks Dictionary:")
 print(blocks_dict)
 # Create an empty DataFrame with specified column names
-db = pd.DataFrame(index=range(0, len(task_list)), columns=['parent_block_id', 'start', 'end', 'movable'])
+# db_all_tasks = pd.DataFrame(index=range(0, len(task_list)), columns=['parent_block_id', 'start', 'end', 'movable'])
+#
+# # Fill the DataFrame with data from task_list and blocks_dict
+# for i, (parent_block_id, procedure_icd) in enumerate(task_list):
+#     db_all_tasks.loc[i, 'parent_block_id'] = parent_block_id
+#     db_all_tasks.loc[i, 'start'] = blocks_dict[parent_block_id]['start']
+#     db_all_tasks.loc[i, 'end'] = blocks_dict[parent_block_id]['end']
+#     db_all_tasks.loc[i, 'movable'] = 1 if procedure_icd not in heart_surgeries_set else 0
+#
+# # Print the DataFrame
+# # Convert 'start' and 'end' columns to datetime
+# db_all_tasks['start'] = pd.to_datetime(db_all_tasks['start'])
+# db_all_tasks['end'] = pd.to_datetime(db_all_tasks['end'])
+#
+# # Convert other columns to integers
+# db_all_tasks[['parent_block_id', 'movable']] = db_all_tasks[['parent_block_id', 'movable']].astype(int)
+#
+# # Calculate the minimum value in the 'start' column
+# min_start = db_all_tasks['start'].min()
+# # Check if the minimum time in the 'start' column is '07:00:00'
+# assert min_start.time() == pd.to_datetime('07:00:00').time(), "Minimum 'start' time is not '07:00:00'."
+#
+# # Calculate the time differences in minutes from the minimum start value
+# db_all_tasks['start15'] = (db_all_tasks['start'] - min_start).dt.total_seconds() // 900
+# db_all_tasks['end15'] = (db_all_tasks['end'] - min_start).dt.total_seconds() // 900
+#
+# # Convert the 'start15' and 'end15' columns to integers
+# db_all_tasks[['start15', 'end15']] = db_all_tasks[['start15', 'end15']].astype(int)
 
-# Fill the DataFrame with data from task_list and blocks_dict
-for i, (parent_block_id, procedure_icd) in enumerate(task_list):
-    db.loc[i, 'parent_block_id'] = parent_block_id
-    db.loc[i, 'start'] = blocks_dict[parent_block_id]['start']
-    db.loc[i, 'end'] = blocks_dict[parent_block_id]['end']
-    db.loc[i, 'movable'] = 1 if procedure_icd not in heart_surgeries_set else 0
+## block db
+# Convert 'blocks_dict' to a DataFrame
+blocks_df = pd.DataFrame.from_dict(blocks_dict, orient='index')
+print(blocks_df)
 
 # Print the DataFrame
 # Convert 'start' and 'end' columns to datetime
-db['start'] = pd.to_datetime(db['start'])
-db['end'] = pd.to_datetime(db['end'])
+blocks_df['start'] = pd.to_datetime(blocks_df['start'])
+blocks_df['end'] = pd.to_datetime(blocks_df['end'])
+blocks_df['movable'] = 1
 
 # Convert other columns to integers
-db[['parent_block_id', 'movable']] = db[['parent_block_id', 'movable']].astype(int)
+blocks_df[['movable']] = blocks_df[['movable']].astype(int)
 
 # Calculate the minimum value in the 'start' column
-min_start = db['start'].min()
+min_start = blocks_df['start'].min()
 # Check if the minimum time in the 'start' column is '07:00:00'
 assert min_start.time() == pd.to_datetime('07:00:00').time(), "Minimum 'start' time is not '07:00:00'."
 
 # Calculate the time differences in minutes from the minimum start value
-db['start15'] = (db['start'] - min_start).dt.total_seconds() // 900
-db['end15'] = (db['end'] - min_start).dt.total_seconds() // 900
+blocks_df['start15'] = (blocks_df['start'] - min_start).dt.total_seconds() // 900
+blocks_df['end15'] = (blocks_df['end'] - min_start).dt.total_seconds() // 900
 
 # Convert the 'start15' and 'end15' columns to integers
-db[['start15', 'end15']] = db[['start15', 'end15']].astype(int)
-
-print(db.columns)
-print(db.dtypes)
-print(db)
-
-task_db = np.array(db[['start15', 'end15', 'movable']].values)
-print(task_db)
-print(task_db.shape)
+blocks_df[['start15', 'end15']] = blocks_df[['start15', 'end15']].astype(int)
+blocks_df.loc['2153529', 'movable'] = 0
+print(blocks_df)
+print(len(blocks_dict))
+print(len(blocks_df))
+p = 1
