@@ -7,7 +7,7 @@ include "globals.mzn";
 int: n_blocks = 22;
 
 int: max_n_rooms = 9;
-int: max_time_line = 100;
+int: max_time_line = 64;
 
 
 int: primetime_start = 0;
@@ -76,11 +76,12 @@ function var int: interval_gap(var int: start1, var int: end1, var int: start2, 
 
           
 function var bool: is_between(int: start1, int: end1, int: start2, int: end2, int: r, int: p, int: q) =
-  exists(k in 1..n_blocks where (block_2_room[k] == r /\ k != p /\ k != q )) (
-    (intervals_lo[k] >= end1 /\ intervals_hi[k] <= start2)
-    \/
-    (intervals_lo[k] >= end2 /\ intervals_hi[k] <= start1)
+
+  exists(k in 1..n_blocks where (block_2_room[k] == r /\ (k != p) /\ (k != q))) (
+    ((intervals_lo[k] >= start1 /\ intervals_hi[k] <= end2)  ) \/
+    ((intervals_lo[k] >= start2 /\ intervals_hi[k] <= end1)  )
   );
+
 
   
        
