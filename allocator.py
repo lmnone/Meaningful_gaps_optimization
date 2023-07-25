@@ -10,7 +10,7 @@ class MeaningfulGapsSolver:
         print('loading %s' % model_path)
         self.exec_path = os.path.join(model_path, "meaningful_gaps.mzn")
         self.triangle_solver = Model(self.exec_path)
-        self.optimizer = Solver.lookup("highs")
+        self.optimizer = Solver.lookup("scip")
 
     def calc(self, intervals_lo: np.array, intervals_hi: np.array, movable: np.array):
         instance = Instance(self.optimizer, self.triangle_solver)
@@ -23,7 +23,7 @@ class MeaningfulGapsSolver:
         instance['intervals_hi'] = intervals_hi
         instance['movable'] = movable
 
-        result = instance.solve(intermediate_solutions=False)
+        result = instance.solve(intermediate_solutions=False, timeout=datetime.timedelta(minutes=2))
         print('found %d solutions' % len(result))
         if result.solution is None:
             return None
