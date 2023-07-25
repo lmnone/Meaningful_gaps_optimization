@@ -1,5 +1,6 @@
 import json
-
+import pandas as pd
+import numpy as np
 # Replace 'path/to/your/json_file.json' with the actual path to your JSON file
 file_path = 'schedule.json'
 
@@ -11,18 +12,15 @@ with open(file_path, 'r') as file:
 data_dict = json.loads(json_data)
 
 # Create dictionaries for tasks and blocks
-tasks_dict = {}
+task_list = []
 blocks_dict = {}
 
 # Iterate over the "tasks" list and group tasks based on "parent_block_id"
 for task in data_dict['tasks']:
     parent_block_id = task['parent_block_id']
     procedure_icd = task['procedure_icd']
+    task_list.append((parent_block_id, procedure_icd))
 
-    if parent_block_id in tasks_dict:
-        tasks_dict[parent_block_id].append(procedure_icd)
-    else:
-        tasks_dict[parent_block_id] = [procedure_icd]
 
 # Iterate over the "blocks" list and create a dictionary with block IDs as keys
 for block in data_dict['blocks']:
@@ -35,18 +33,26 @@ for block in data_dict['blocks']:
     }
 
 # Print the resulting dictionaries
-print("Tasks Dictionary:")
-print(tasks_dict)
+print("Tasks task_list:")
+print(task_list)
 print("\nBlocks Dictionary:")
 print(blocks_dict)
+# Create an empty DataFrame with specified column names
+db = pd.DataFrame(index=range(0, len(task_list)), columns=['parent_block_id', 'start', 'end'])
 
-icd_set = set()
+# Fill the DataFrame with data from task_list and blocks_dict
+for i, (parent_block_id, procedure_icd) in enumerate(task_list):
+    db.loc[i, 'parent_block_id'] = parent_block_id
+    db.loc[i, 'start'] = blocks_dict[parent_block_id]['start']
+    db.loc[i, 'end'] = blocks_dict[parent_block_id]['end']
 
-# Loop through the tasks dictionary and add ICD codes to the set
-for icd_list in tasks_dict.values():
-    if icd_list:
-        icd_set.update(icd_list)
+# Print the DataFrame
+# Convert 'start' and 'end' columns to datetime
+db['start'] = pd.to_datetime(db['start'])
+db['end'] = pd.to_datetime(db['end'])
 
-# Print the set of unique ICD codes
-print("Set of unique ICD codes:[%d]" % len(icd_set))
-print(icd_set)
+# Convert other columns to integers
+db[['parent_block_id']] = db[['parent_block_id']].astype(int)
+print(db.columns)
+print(db.dtypes)
+print(db)
