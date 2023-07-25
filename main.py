@@ -119,4 +119,12 @@ blocks_df.loc['2153529', 'movable'] = 0
 print(blocks_df)
 print(len(blocks_dict))
 print(len(blocks_df))
-p = 1
+assert np.all((blocks_df['end15'] - blocks_df['start15']).values > 0)
+
+interval_lo = blocks_df['start15'].values.tolist()
+interval_hi = blocks_df['end15'].values.tolist()
+movable = blocks_df['movable'].values.tolist()
+
+print(interval_lo)
+print(interval_hi)
+print(movable)
