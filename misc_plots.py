@@ -6,7 +6,7 @@ import plotly.io as pio
 
 
 def plot_gantt_chart(df_, annotation_column='comment', save_path=None):
-    fig = px.timeline(df_, x_start='start', x_end='end', y='room_id', opacity=0.5)
+    fig = px.timeline(df_, x_start='start_o', x_end='end_o', y='room_id', opacity=0.5)
     fig.update_yaxes(title_text='room_id')
 
     # Add annotations for the room column

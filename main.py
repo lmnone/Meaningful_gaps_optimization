@@ -139,6 +139,8 @@ block_2_room, shift = solver.calc(np.array(interval_lo), np.array(interval_hi), 
 print(block_2_room, shift)
 blocks_df['room_id'] = -1
 blocks_df['comment'] = ''
+blocks_df['start_o'] = blocks_df['start']
+blocks_df['end_o'] = blocks_df['end']
 
 i = 0
 for block_id in blocks_df.index.tolist():
@@ -146,9 +148,11 @@ for block_id in blocks_df.index.tolist():
     print(room_id)
     blocks_df.loc[block_id, 'room_id'] = room_id
     blocks_df.loc[block_id, 'comment'] = str(block_id)
+    blocks_df.loc[block_id, 'start_o'] += pd.Timedelta(minutes=15) * shift[i]
+    blocks_df.loc[block_id, 'end_o'] += pd.Timedelta(minutes=15) * shift[i]
     i += 1
 
+print(blocks_df.dtypes)
 print(blocks_df)
+
 plot_gantt_chart(blocks_df)
-
-
