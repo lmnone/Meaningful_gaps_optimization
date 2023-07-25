@@ -2,28 +2,31 @@ import json
 import pandas as pd
 import numpy as np
 
-heart_surgeries_set = {
-    "605,1742",
-    "57.49",
-    "81.51",
-    "81.54",
-    "Z8108",
-    "Z283",
-    "Z286 0",
-    "44.38",
-    "44.97",
-    "Z5631",
-    "62.19",
-    "28.6",
-    "21.69",
-    "Z2769",
-    "82.21",
-    "7286",
-    "82.01",
-    "3540",
-    "81.65",
-    "78.60"
-}
+from allocator import MeaningfulGapsSolver
+from globals import minizinc_dir
+
+# heart_surgeries_set = {
+#     "605,1742",
+#     "57.49",
+#     "81.51",
+#     "81.54",
+#     "Z8108",
+#     "Z283",
+#     "Z286 0",
+#     "44.38",
+#     "44.97",
+#     "Z5631",
+#     "62.19",
+#     "28.6",
+#     "21.69",
+#     "Z2769",
+#     "82.21",
+#     "7286",
+#     "82.01",
+#     "3540",
+#     "81.65",
+#     "78.60"
+# }
 
 # Replace 'path/to/your/json_file.json' with the actual path to your JSON file
 file_path = 'schedule.json'
@@ -117,14 +120,19 @@ blocks_df['end15'] = (blocks_df['end'] - min_start).dt.total_seconds() // 900
 blocks_df[['start15', 'end15']] = blocks_df[['start15', 'end15']].astype(int)
 blocks_df.loc['2153529', 'movable'] = 0
 print(blocks_df)
-print(len(blocks_dict))
-print(len(blocks_df))
+# print(len(blocks_dict))
+# print(len(blocks_df))
 assert np.all((blocks_df['end15'] - blocks_df['start15']).values > 0)
 
 interval_lo = blocks_df['start15'].values.tolist()
 interval_hi = blocks_df['end15'].values.tolist()
 movable = blocks_df['movable'].values.tolist()
-
+print('%d blocks' % len(interval_lo))
 print(interval_lo)
 print(interval_hi)
 print(movable)
+
+solver = MeaningfulGapsSolver(minizinc_dir)
+
+block_2_room = solver.calc(np.array(interval_lo), np.array(interval_hi), np.array(movable))
+print(block_2_room)
