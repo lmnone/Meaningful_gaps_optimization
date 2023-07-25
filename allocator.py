@@ -10,17 +10,18 @@ class MeaningfulGapsSolver:
         print('loading %s' % model_path)
         self.exec_path = os.path.join(model_path, "meaningful_gaps.mzn")
         self.triangle_solver = Model(self.exec_path)
-        self.optimizer = Solver.lookup("chuffed")
+        self.optimizer = Solver.lookup("gecode")
 
-    def calc(self, interval_lo: np.array, interval_hi: np.array, movable: np.array):
+    def calc(self, intervals_lo: np.array, intervals_hi: np.array, movable: np.array):
         instance = Instance(self.optimizer, self.triangle_solver)
 
-        assert interval_lo.shape == interval_hi.shape
-        assert movable.shape == interval_lo.shape
+        assert intervals_lo.shape == intervals_hi.shape
+        assert movable.shape == intervals_lo.shape
 
-        instance['n_blocks'] = interval_lo.shape[0]
-        instance['interval_lo'] = interval_lo
-        instance['interval_hi'] = interval_hi
+        instance['n_blocks'] = intervals_lo.shape[0]
+        instance['intervals_lo'] = intervals_lo
+        instance['intervals_hi'] = intervals_hi
+        instance['movable'] = movable
 
         result = instance.solve(intermediate_solutions=False)
         print('found %d solutions' % len(result))

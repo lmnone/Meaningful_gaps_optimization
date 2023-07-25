@@ -125,17 +125,17 @@ print(blocks_df)
 # print(len(blocks_df))
 assert np.all((blocks_df['end15'] - blocks_df['start15']).values > 0)
 
-interval_lo = blocks_df['start15'].values.tolist()
-interval_hi = blocks_df['end15'].values.tolist()
+intervals_lo = blocks_df['start15'].values.tolist()
+intervals_hi = blocks_df['end15'].values.tolist()
 movable = blocks_df['movable'].values.tolist()
-print('%d blocks' % len(interval_lo))
-print(interval_lo)
-print(interval_hi)
+print('%d blocks' % len(intervals_lo))
+print(intervals_lo)
+print(intervals_hi)
 print(movable)
 
 solver = MeaningfulGapsSolver(minizinc_dir)
 
-block_2_room, shift = solver.calc(np.array(interval_lo), np.array(interval_hi), np.array(movable))
+block_2_room, shift = solver.calc(np.array(intervals_lo), np.array(intervals_hi), np.array(movable))
 print(block_2_room, shift)
 blocks_df['room_id'] = -1
 blocks_df['comment'] = ''
