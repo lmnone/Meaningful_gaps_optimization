@@ -4,6 +4,7 @@ import numpy as np
 
 from allocator import MeaningfulGapsSolver
 from globals import minizinc_dir
+from misc_plots import plot_gantt_chart
 
 # heart_surgeries_set = {
 #     "605,1742",
@@ -134,5 +135,20 @@ print(movable)
 
 solver = MeaningfulGapsSolver(minizinc_dir)
 
-block_2_room = solver.calc(np.array(interval_lo), np.array(interval_hi), np.array(movable))
-print(block_2_room)
+block_2_room, shift = solver.calc(np.array(interval_lo), np.array(interval_hi), np.array(movable))
+print(block_2_room, shift)
+blocks_df['room_id'] = -1
+blocks_df['comment'] = ''
+
+i = 0
+for block_id in blocks_df.index.tolist():
+    room_id = block_2_room[i]
+    print(room_id)
+    blocks_df.loc[block_id, 'room_id'] = room_id
+    blocks_df.loc[block_id, 'comment'] = str(block_id)
+    i += 1
+
+print(blocks_df)
+plot_gantt_chart(blocks_df)
+
+
