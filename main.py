@@ -135,7 +135,8 @@ print(movable)
 
 solver = MeaningfulGapsSolver(minizinc_dir)
 
-block_2_room, shift = solver.calc(np.array(intervals_lo), np.array(intervals_hi), np.array(movable))
+
+block_2_room, shift, gaps = solver.calc(np.array(intervals_lo), np.array(intervals_hi), np.array(movable))
 print(block_2_room, shift)
 blocks_df['room_id'] = -1
 blocks_df['comment'] = ''
@@ -154,5 +155,15 @@ for block_id in blocks_df.index.tolist():
 
 print(blocks_df.dtypes)
 print(blocks_df)
+print(gaps)
 
+all_rooms = set(blocks_df['room_id'].values.tolist())
+
+for room_id in all_rooms:
+    sorted_intervals = blocks_df.loc[blocks_df['room_id'] == room_id, ['start_o', 'end_o']].sort_values(
+        by='start_o').index.tolist()
+    print('room_id: %d' % room_id)
+    for index in range(1, len(sorted_intervals)):
+        dT = blocks_df.loc[sorted_intervals[index], 'start_o'] - blocks_df.loc[sorted_intervals[index - 1], 'end_o']
+        print(dT)
 plot_gantt_chart(blocks_df)

@@ -10,7 +10,7 @@ class MeaningfulGapsSolver:
         print('loading %s' % model_path)
         self.exec_path = os.path.join(model_path, "meaningful_gaps.mzn")
         self.triangle_solver = Model(self.exec_path)
-        self.optimizer = Solver.lookup("gecode")
+        self.optimizer = Solver.lookup("highs")
 
     def calc(self, intervals_lo: np.array, intervals_hi: np.array, movable: np.array):
         instance = Instance(self.optimizer, self.triangle_solver)
@@ -28,4 +28,4 @@ class MeaningfulGapsSolver:
         if result.solution is None:
             return None
 
-        return result.solution.block_2_room, result.solution.shift
+        return result.solution.block_2_room, result.solution.shift, result.solution.gaps
