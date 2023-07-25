@@ -23,7 +23,7 @@ class MeaningfulGapsSolver:
         instance['intervals_hi'] = intervals_hi
         instance['movable'] = movable
 
-        result = instance.solve(intermediate_solutions=False, timeout=datetime.timedelta(minutes=2))
+        result = instance.solve(intermediate_solutions=False)
         print('found %d solutions' % len(result))
         if result.solution is None:
             return None
