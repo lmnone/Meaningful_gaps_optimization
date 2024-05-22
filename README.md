@@ -10,3 +10,4 @@ The goal is to maximize potential revenue by assigning blocks to rooms. This met
 
 Additionally, it is allowed to delay or move ahead of schedule each block by up to 60 minutes.
 
+![timeline](./timeline.png)
